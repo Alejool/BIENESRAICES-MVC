@@ -1,0 +1,20 @@
+{
+    "name": "acer/bienesraices-poo",
+    "description": "es la versión de bienes raices  con POO",
+    "autoload": {
+        "psr-4": {
+            "Model\\":"./models",
+            "MVC\\": "./",
+            "Controllers\\":"./controllers"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alejandro Olarte",
+            "email": "olartealejandro48@gmail.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^2.7"
+    }
+}
