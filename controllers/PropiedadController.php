@@ -28,7 +28,7 @@ class PropiedadController {
     }
 
 
-    $router->render('/admin', [
+    $router->render('/propiedades/admin', [
     'propiedades'=>$propiedades,
     'mensaje'=>$mensaje 
   ]);
@@ -45,9 +45,6 @@ class PropiedadController {
 
 
     if($_SERVER["REQUEST_METHOD"]==="POST"){
-
-     
-   
       $args=[];
       $args['titulo']=$_POST['titulo'] ?? null;
       $args['precio']=$_POST['precio'] ?? null;
@@ -77,9 +74,6 @@ class PropiedadController {
 
             if(is_dir(CARPETA_IMG))
             $image->save(CARPETA_IMG.$nombreImg);
-
-            
-    
             $propiedad->guardar();
     
            

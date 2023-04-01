@@ -17,7 +17,7 @@
 
       <?php if($propiedad->imagen) {?>
 
-      <img class="img__small" src="/bienesraicesPOO/imagenes/<?php echo $propiedad->imagen?>" alt="imagen propiedad">
+      <img class="img__small" src="/imagenes/<?php echo $propiedad->imagen?>" alt="imagen propiedad">
 
       <?php } ?>
     </div> <!--form__campo-->

@@ -34,6 +34,7 @@ class Vendedores  extends activeRecord implements metodos{
     if(!$this->nombre ){
       self::$errores[]='el nombre es obligatorio';
     }
+
     if(!preg_match(static::$validarText, $this->nombre) && $this->nombre){
       self::$errores[]='el nombre solo puede tener letras';
     }
@@ -71,9 +72,6 @@ class Vendedores  extends activeRecord implements metodos{
     return self::$errores;
   }
 
-
-
-  
   public static function redireccionar ($resultado, $tipo){
     
     switch ($tipo){
@@ -91,9 +89,9 @@ class Vendedores  extends activeRecord implements metodos{
    
  
 
-  if($resultado){
-    header ("LOCATION: index.php?mensaje=$mensaje");
-  }
+    if($resultado){
+      header ("LOCATION: index.php?mensaje=$mensaje");
+    }
 
   }
 }

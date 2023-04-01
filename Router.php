@@ -18,16 +18,26 @@ class Router {
 
 
   public function comprobarRutas(){
+    session_start();
+   
+
+    $rutas_protegidas=['/propiedades/admin', 'propiedades/actualizar', '/propiedades/crear', '/vendedores/admin', '/vendedores/crear', '/vendedores/actualizar'];
     $urlActual=$_SERVER['PATH_INFO'] ?? '/';
     $metodo=$_SERVER["REQUEST_METHOD"];
 
+    // asignar rutaas
     if($metodo === "GET"){
      $function=$this->rutasGET[$urlActual] ?? null;  
 
     }else{
-      
       $function=$this->rutasPOST[$urlActual] ?? null; 
     }
+
+    // Proteger la rutas
+    if (in_array($urlActual, $rutas_protegidas) && !$_SESSION){
+      header('LOCATION: /');  
+    }
+    
 
     if($function){
       // la url existe si hay una funcion asociada

@@ -1,18 +1,17 @@
 <?php  namespace Controllers;
 
 use MVC\Router;
-use Model\Propiedad;
 use Model\Vendedores;
-use Intervention\Image\ImageManagerStatic as Image;
 
 
 
 
-class PropiedadController {
+
+class vendedoresController {
 
   public static function index (Router $router){
 
-    $propiedades=Propiedad::all();   
+    $vendedores=Vendedores::all();   
     $mensaje=$_GET['mensaje'] ?? null;
     
 
@@ -22,14 +21,14 @@ class PropiedadController {
       $id=filter_var($id, FILTER_VALIDATE_INT);
     
       if($id){
-        $propiedad=Propiedad::find($id);
-        $propiedad->eliminar();
+        $Vendedores=Vendedores::find($id);
+        $Vendedores->eliminar();
       }
     }
 
 
-    $router->render('/admin', [
-    'propiedades'=>$propiedades,
+    $router->render('/vendedores/admin', [
+    'vendedores'=>$vendedores,
     'mensaje'=>$mensaje 
   ]);
 
@@ -37,125 +36,63 @@ class PropiedadController {
 
 
   public static function crear (Router $router){
-    $propiedad=new Propiedad;
-    $vendedores=Vendedores::all();
+    $vendedor=new Vendedores;
    
-    $errores=Propiedad::getErrores();
-
-
+    $errores=Vendedores::getErrores();
 
     if($_SERVER["REQUEST_METHOD"]==="POST"){
 
-     
-   
-      $args=[];
-      $args['titulo']=$_POST['titulo'] ?? null;
-      $args['precio']=$_POST['precio'] ?? null;
-      $args['descripcion']=$_POST['descripcion'] ?? null;
-      $args['habitaciones']=$_POST['habitaciones'] ?? null;
-      $args['wc']=$_POST['wc'] ?? null;
-      $args['estacionamiento']=$_POST['estacionamiento'] ?? null;
-      $args['vendedorId']=$_POST['vendedorId'] ?? null;
-    
-    
-      // sincroniza el obejto con el que esta en memoria "hace la actualización"
-      $propiedad->sincronizar($args);
-    
-       // generar nombre unico para cada imagen
-       $nombreImg=md5(uniqid()).".jpg";
-       if($_FILES['imagen']['tmp_name']){
-        $image=Image::make($_FILES['imagen']['tmp_name'])->fit(800,600);
-   
-        // enviamos el nombre parra guardar en la base de datos
-         $propiedad->setImagen($nombreImg);
-       }
-    
-          // validar errores
-          $errores=$propiedad->validarErrores();
+      $vendedor=new Vendedores($_POST);
+      $errores= $vendedor->validarErrores();
 
-          if (empty($errores)){
-
-            if(is_dir(CARPETA_IMG))
-            $image->save(CARPETA_IMG.$nombreImg);
-
-            
+      if (empty($errores)){
     
-            $propiedad->guardar();
+        $vendedor->guardar();
     
-           
-          }
+      }
     
     }
     
-
-    $router->render('/propiedades/crear',
+    
+    $router->render('/vendedores/crear',
     [
-      "propiedad"=>$propiedad,
-      'vendedores'=>$vendedores,
+      'vendedor'=>$vendedor,
       'errores'=>$errores 
     ]);
-
   }
+
+
   public static function actualizar (Router $router){
+  
+    $id=validarOredireccionar('../propiedades/admin');
 
-      
-    $id=validarOredireccionar('../admin');
+    $vendedor= Vendedores::find($id);
 
-    $propiedad=Propiedad::find($id);
-    $vendedores=Vendedores::all();
-    $vendedores=Vendedores::all();
+    $errores=Vendedores::getErrores();
 
-    $errores=Propiedad::getErrores();
+
+
 
 
     if($_SERVER["REQUEST_METHOD"]==="POST"){
-     
-   
-      $args=[];
-      $args['titulo']=$_POST['titulo'] ?? null;
-      $args['precio']=$_POST['precio'] ?? null;
-      $args['descripcion']=$_POST['descripcion'] ?? null;
-      $args['habitaciones']=$_POST['habitaciones'] ?? null;
-      $args['wc']=$_POST['wc'] ?? null;
-      $args['estacionamiento']=$_POST['estacionamiento'] ?? null;
-      $args['vendedorId']=$_POST['vendedorId'] ?? null;
-    
-    
-      // sincroniza el obejto con el que esta en memoria "hace la actualización"
-      $propiedad->sincronizar($args);
-    
-       
-    
-        $nombreImg=md5(uniqid()).".jpg";
-          if($_FILES['imagen']['tmp_name']){
-              $image=Image::make($_FILES['imagen']['tmp_name'])->fit(800,600);
+
+      $args=$_POST;
+
+      //sincronizar objeto en memoria
+      $vendedor->sincronizar($args);
+
+      $errores=$vendedor->validarErrores();
+
+
+      if (empty($errores)){
+
+        $vendedor->guardar();
         
-          // enviamos el nombre parra guardar en la base de datos
-            $propiedad->setImagen($nombreImg);
-        }
-
-          // validar errores
-        $errores=$propiedad->validarErrores();
-
-
-          if (empty($errores)){
-            // generar nombre unico para cada imagen
-            if($_FILES['imagen']['tmp_name']){
-              $image->save(CARPETA_IMG. $image);
-            }
-            
-
-            $propiedad->guardar();
-         
-    
-           
-          }
-    
+      }
     }
 
-    $router->render('/propiedades/actualizar', [
-      'propiedad'=>$propiedad,
-      'vendedores'=>$vendedores,
+    $router->render('/vendedores/actualizar', [
+      'vendedor'=>$vendedor,
       'errores'=> $errores
     ]);
 

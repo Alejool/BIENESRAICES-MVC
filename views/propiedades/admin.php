@@ -28,9 +28,9 @@
 
 
   <div class='btn'>
-    <a href="propiedades/crear" class="form__btn m-r-2">Nueva propiedad</a>
+    <a href="crear" class="form__btn m-r-2">Nueva propiedad</a>
   
-    <a href="/vendedores/admin" class="form__btn btn__amarillo ">Vendedores</a>
+    <a href="../vendedores/admin" class="form__btn btn__amarillo ">Vendedores</a>
   </div>
 
 
@@ -52,11 +52,11 @@
       <tr class="tabla__fila">
         <td class="tabla__valor tabla__valor--id">  <?php echo $propiedad->id; ?></td>
         <td class="tabla__valor"><?php echo $propiedad->titulo; ?> </td>
-        <td class="tabla__valor" > <img  class="tabla__img" src="/MVC-BIENESRAICES/public/imagenes/<?php echo $propiedad->imagen;?>" alt="imagen propiedad"></td>
+        <td class="tabla__valor" > <img  class="tabla__img" src="/imagenes/<?php echo $propiedad->imagen;?>" alt="imagen propiedad"></td>
         <td class="tabla__valor">$ <?php echo $propiedad->precio; ?></td>
 
         <td class="tabla__valor">
-          <a href="propiedades/actualizar?id=<?php echo $propiedad->id;  ?>" class="form__btn btn__amarillo">Actualizar</a> 
+          <a href="actualizar?id=<?php echo $propiedad->id;  ?>" class="form__btn btn__amarillo">Actualizar</a> 
           
           <form  method="POST"  >
             <input type="hidden" name="id" value="<?php echo $propiedad->id; ?>">

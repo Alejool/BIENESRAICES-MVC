@@ -200,6 +200,7 @@ class activeRecord {
 
 
   }
+  
   public static function consultarSQL($query){
 
     // consultar base de datos
