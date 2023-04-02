@@ -120,10 +120,8 @@ class paginasControllers {
         $envio=true;
       }
       else {
-        $mensaje= 'no se pudo enviar el formulario... ';
+        $mensaje= 'no se pudo enviar el formulario...';
       }
-
-
     }
 
     $router->render("paginas/contacto", [

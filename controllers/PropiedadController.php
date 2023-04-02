@@ -135,7 +135,7 @@ class PropiedadController {
           if (empty($errores)){
             // generar nombre unico para cada imagen
             if($_FILES['imagen']['tmp_name']){
-              $image->save(CARPETA_IMG. $image);
+              $image->save(CARPETA_IMG. $nombreImg);
             }
             
 

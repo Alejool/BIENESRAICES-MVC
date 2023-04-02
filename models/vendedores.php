@@ -84,13 +84,13 @@ class Vendedores  extends activeRecord implements metodos{
         $mensaje=2;
       break;
       default:
-      header ("LOCATION: index.php)");
+      header ("LOCATION: ./admin)");
     }
    
  
 
     if($resultado){
-      header ("LOCATION: index.php?mensaje=$mensaje");
+      header ("LOCATION: ./admin?mensaje=$mensaje");
     }
 
   }

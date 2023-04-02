@@ -64,7 +64,7 @@ class vendedoresController {
 
   public static function actualizar (Router $router){
   
-    $id=validarOredireccionar('../propiedades/admin');
+    $id=validarOredireccionar('/propiedades/admin');
 
     $vendedor= Vendedores::find($id);
 

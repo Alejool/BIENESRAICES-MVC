@@ -93,13 +93,13 @@ class Propiedad extends activeRecord implements metodos {
       break;
       
       default:
-      header ("LOCATION: ../admin.php");
+      header ("LOCATION: ./admin");
     }
    
  
 
   if($resultado){
-    header ("LOCATION: ../admin?mensaje=$mensaje");
+    header ("LOCATION: ./admin?mensaje=$mensaje");
   }
 
   

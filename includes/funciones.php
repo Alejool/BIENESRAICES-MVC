@@ -4,7 +4,7 @@
 
 define('TEMPLATES_URL', __DIR__ .'/templates');
 define('FUNCIONES_URL', __DIR__.'funciones.php');
-define('CARPETA_IMG', $_SERVER['DOCUMENT_ROOT']. '/public/imagenes/');
+define('CARPETA_IMG', $_SERVER['DOCUMENT_ROOT']. '/imagenes/');
 
 
 

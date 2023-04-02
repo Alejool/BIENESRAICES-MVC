@@ -145,9 +145,10 @@ class activeRecord {
 
   public function setImagen($imagen){
     // eliminar anterior imagen
+    
     if (isset($this->id)){
       // comprobar si existe 
-    $this->eliminarImagen();
+      $this->eliminarImagen();
     }
 
     // asignar a la propiedad imagen el nombre de la imagen
@@ -155,8 +156,11 @@ class activeRecord {
       $this->imagen=$imagen;
     }
   }
+
   public function eliminarImagen(){
+
     $existe=file_exists(CARPETA_IMG.$this->imagen);
+    
 
     if($existe){
      unlink(CARPETA_IMG.$this->imagen);

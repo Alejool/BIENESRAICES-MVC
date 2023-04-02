@@ -1,7 +1,5 @@
 
 
-
-
   <main class="contacto contenedor">
     <picture>
       <source srcset="build/img/destacada3.webp" type="image/webp">
@@ -82,7 +80,6 @@
       <div class='btn'>
         <input type="submit" value="Enviar" class= "form__btn">
       </div>
-
 
     </form>
   </main>
