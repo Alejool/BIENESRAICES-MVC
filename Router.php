@@ -22,7 +22,7 @@ class Router {
    
 
     $rutas_protegidas=['/propiedades/admin', 'propiedades/actualizar', '/propiedades/crear', '/vendedores/admin', '/vendedores/crear', '/vendedores/actualizar'];
-    $urlActual=$_SERVER['PATH_INFO'] ?? '/';
+    $urlActual = strtok($_SERVER['REQUEST_URI'], '?') ?? '/';
     $metodo=$_SERVER["REQUEST_METHOD"];
 
     // asignar rutaas

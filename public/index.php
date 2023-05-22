@@ -8,7 +8,7 @@ use Controllers\PropiedadController;
 use Controllers\VendedoresController;
 
 require_once __DIR__.'/../includes/app.php';
-mostrarErrores();
+
 
 
 $router= new Router();
